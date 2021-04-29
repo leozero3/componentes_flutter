@@ -7,6 +7,7 @@ class AvatarPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Avatar Page'),
       ),
+
     );
   }
 }
