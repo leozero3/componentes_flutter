@@ -13,6 +13,31 @@ class CardPage extends StatelessWidget {
           _cartType1(),
           SizedBox(height: 30),
           _cardType2(),
+          SizedBox(height: 30),
+          _cartType1(),
+          SizedBox(height: 30),
+          _cardType2(),
+          SizedBox(height: 30),
+          _cartType1(),
+          SizedBox(height: 30),
+          _cardType2(),
+          SizedBox(height: 30),
+          _cartType1(),
+          SizedBox(height: 30),
+          _cardType2(),
+          SizedBox(height: 30),
+          _cartType1(),
+          SizedBox(height: 30),
+          _cardType2(),
+          SizedBox(height: 30),
+          _cartType1(),
+          SizedBox(height: 30),
+          _cardType2(),
+          SizedBox(height: 30),
+          _cartType1(),
+          SizedBox(height: 30),
+          _cardType2(),
+          SizedBox(height: 30),
         ],
       ),
     );
@@ -21,6 +46,10 @@ class CardPage extends StatelessWidget {
 
 Widget _cartType1() {
   return Card(
+    elevation: 10,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+    ),
     child: Column(
       children: [
         ListTile(
@@ -50,7 +79,8 @@ Widget _cartType1() {
 }
 
 Widget _cardType2() {
-  return Card(
+
+  final card = Container(
     child: Column(
       children: [
         FadeInImage(
@@ -68,6 +98,26 @@ Widget _cardType2() {
         // ),
         Container(padding: EdgeInsets.all(10), child: Text('uma descrição da imagem'))
       ],
+    ),
+  );
+
+  return Container(
+
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(30),
+      color: Colors.white,
+      boxShadow: <BoxShadow>[
+        BoxShadow(
+          color: Colors.black26,
+          blurRadius: 10,
+          spreadRadius: 2,
+          offset: Offset(2, 10)
+        )
+      ]
+    ),
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(30),
+      child: card,
     ),
   );
 }
