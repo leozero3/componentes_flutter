@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class InputPage extends StatefulWidget {
   const InputPage({Key key}) : super(key: key);
 
@@ -12,6 +11,16 @@ class _InputPageState extends State<InputPage> {
   String _name = '';
   String _email = '';
   String _date = '';
+
+  String _selectedOption = 'Vôar';
+
+  List<String> _powers = [
+    'Vôar',
+    'Raio X',
+    'Super Folego',
+    'Velocidade',
+    'Super Força'
+  ];
 
   TextEditingController _inputFieldDateController = TextEditingController();
 
@@ -31,6 +40,8 @@ class _InputPageState extends State<InputPage> {
           _createPassword(),
           Divider(),
           createDate(context),
+          Divider(),
+          createDropdown(),
           Divider(),
           _createPerson(),
         ],
@@ -55,13 +66,6 @@ class _InputPageState extends State<InputPage> {
           _name = value;
         });
       },
-    );
-  }
-
-  Widget _createPerson() {
-    return ListTile(
-      title: Text('O nome é: $_name'),
-      subtitle: Text('Email: $_email'),
     );
   }
 
@@ -120,14 +124,52 @@ class _InputPageState extends State<InputPage> {
         initialDate: DateTime.now(),
         firstDate: DateTime(2021),
         lastDate: DateTime(2031),
-      locale: Locale('pt', 'BR')
-    );
-    
+        locale: Locale('pt', 'BR'));
+
     if (picked != null) {
       setState(() {
         _date = picked.toString();
         _inputFieldDateController.text = _date;
       });
-    }  
+    }
+  }
+
+  List<DropdownMenuItem<String>> getOptionDropdown() {
+    List<DropdownMenuItem<String>> list = [];
+    _powers.forEach((power) {
+      list.add(DropdownMenuItem(
+        child: Text(power),
+        value: power,
+      ));
+    });
+    return list;
+  }
+
+  createDropdown() {
+    return Row(
+      children: [
+        Icon(Icons.select_all),
+        SizedBox(width: 30),
+        Expanded(
+          child: DropdownButton(
+            value: _selectedOption,
+            items: getOptionDropdown(),
+            onChanged: (opt) {
+              setState(() {
+                _selectedOption = opt;
+              });
+            },
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget _createPerson() {
+    return ListTile(
+      title: Text('O nome é: $_name'),
+      subtitle: Text('Email: $_email'),
+      trailing: Text(_selectedOption),
+    );
   }
 }
